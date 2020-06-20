@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+    <table class="table table-bordered table-hover">
+        <tr>
+            <th></th>
+            <th>Order Id</th>
+            <th>Order Item</th>
+            <th>Price</th>
+            <th>Cost</th>
+            <th>Status</th>
+        </tr>
+
+        @foreach (var x in Model)
+        {
+            <tr>
+                <td><input type="checkbox" id=@x.orderId onchange="change(id)"></td>
+                <td>@x.orderId</td>
+                <td>@x.orderItem</td>
+                <td>@x.price</td>
+                <td>@x.cost</td>
+                @{
+                    var stringName = x.status == 1 ? "Payment completed" : "To be shipped";
+                    <td>@stringName</td>
+                }
+
+            </tr>
+        }
+    </table>
+    <input type="button" value="comfirm" onclick="saveOrderId()">
+
+
+
+<script>
+    var list=[];
+    function change(id) {
+        var pos = list.indexOf(id);
+        if (pos == -1)
+            list.push(id)
+        else
+            list.splice(pos, 1);
+
+    }
+    function saveOrderId() {
+        $.ajax({
+            type: 'POST',
+            url: "@Url.Action("saveChange", "Home")",
+            contentType: 'application/json',
+            data: JSON.stringify(list)
+
+        });
+        
+    }
+    </script>
