@@ -6,20 +6,35 @@
 
 
 <body onload="getData()">
-<div id="name"></div>
-<div id="detailedData"></div>
 
-    </body>
+    <table class="table table-bordered table-hover">
+        <tr>
+
+
+            <th>Order Item</th>
+            <th>Item Detail</th>
+
+        </tr>
+        <tr>
+        <td id="name"></td>
+        <td id="detail"></td>
+        </tr>
+
+</body>
 <script>
     function getData() {
         var data = window.sessionStorage.getItem("data");
+        
         $.ajax({
             type: 'POST',
             url: "@Url.Action("getDetailedData","Home")",
-            contentType: "application/json",
-            data: JSON.stringify(data),
+            contentType: 'application/json',
+            data: JSON.stringify({data : data}),
             success: function (response) {
-                console.log(response)
+                for (var prop in response) {
+                    if(prop !="Id")
+                    document.getElementById(prop).innerHTML = response[prop];
+                }
             }
         });
         //document.getElementById("name").innerHTML = data;

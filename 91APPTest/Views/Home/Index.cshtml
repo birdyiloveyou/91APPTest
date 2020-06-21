@@ -37,8 +37,8 @@
     var list = [];
 
     function detailed(itemName) {
-        window.sessionStorage.setItem("data",itemName);
-        window.location.href = "Detailed";   
+        window.sessionStorage.setItem("data", itemName);
+        location.href="/Home/Detailed"
     }
     function change(id) {
         var pos = list.indexOf(id);

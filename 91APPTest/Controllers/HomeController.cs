@@ -10,6 +10,8 @@ namespace _91APPTest.Controllers
     public class HomeController : Controller
     {
         TestDbEntities db = new TestDbEntities();
+
+
         public ActionResult Index()
         {
             
@@ -17,6 +19,8 @@ namespace _91APPTest.Controllers
 
             return View(db.OrderList.OrderBy(x=>x.orderItem));
         }
+
+
         public ActionResult Detailed() {
 
             
@@ -35,9 +39,10 @@ namespace _91APPTest.Controllers
         }
 
         [HttpPost]
-        public ActionResult getDetailedData(string name) {
-            var data = db.ItemDetail.Select(x => x.name == name);
-            return View(data);
+        public JsonResult getDetailedData(string data) {
+            var detailed = db.ItemDetail.Where(x => x.name == data).First();
+
+            return Json(detailed);
         }
 
         
