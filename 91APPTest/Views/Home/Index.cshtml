@@ -1,37 +1,35 @@
 ﻿@{
+    /**/
+
     ViewBag.Title = "Home Page";
 }
 
+<table class="table table-bordered table-hover">
+    <tr>
+        <th></th>
+        <th>Order Id</th>
+        <th>Order Item</th>
+        <th>Price</th>
+        <th>Cost</th>
+        <th>Status</th>
+    </tr>
 
-    <table class="table table-bordered table-hover">
+    @foreach (var x in Model)
+    {
         <tr>
-            <th></th>
-            <th>Order Id</th>
-            <th>Order Item</th>
-            <th>Price</th>
-            <th>Cost</th>
-            <th>Status</th>
+            <td><input type="checkbox" id=@x.orderId onchange="change(id)"></td>
+            <td>@x.orderId</td>
+            <td><input type="button" onclick="detailed(value)" value=@x.orderItem></td>
+            <td>@x.price</td>
+            <td>@x.cost</td>
+            @{
+                var stringName = x.status == 1 ? "Payment completed" : "To be shipped";
+                <td>@stringName</td>
+            }
         </tr>
-
-        @foreach (var x in Model)
-        {
-            <tr>
-                <td><input type="checkbox" id=@x.orderId onchange="change(id)"></td>
-                <td>@x.orderId</td>
-                <td><input type="button" onclick="detailed(value)" value=@x.orderItem></td>
-                <td>@x.price</td>
-                <td>@x.cost</td>
-                @{
-                    var stringName = x.status == 1 ? "Payment completed" : "To be shipped";
-                    <td>@stringName</td>
-                }
-
-            </tr>
-        }
-    </table>
-    <input type="button" value="comfirm" onclick="saveOrderId()">
-
-
+    }
+</table>
+<input type="button" value="comfirm" onclick="saveOrderId()">
 
 <script>
     var list = [];
@@ -56,6 +54,6 @@
             data: JSON.stringify(list)
 
         });
-        
+
     }
-    </script>
+</script>
