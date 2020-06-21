@@ -27,5 +27,6 @@ namespace _91APPTest.Models
     
         public virtual DbSet<C__RefactorLog> C__RefactorLog { get; set; }
         public virtual DbSet<OrderList> OrderList { get; set; }
+        public virtual DbSet<ItemDetail> ItemDetail { get; set; }
     }
 }

@@ -15,7 +15,12 @@ namespace _91APPTest.Controllers
             
 
 
-            return View(db.OrderList);
+            return View(db.OrderList.OrderBy(x=>x.orderItem));
+        }
+        public ActionResult Detailed() {
+
+            
+            return View();
         }
 
 
@@ -29,7 +34,15 @@ namespace _91APPTest.Controllers
             return null;
         }
 
+        [HttpPost]
+        public ActionResult getDetailedData(string name) {
+            var data = db.ItemDetail.Select(x => x.name == name);
+            return View(data);
+        }
+
         
-        
+
+
+
     }
 }

@@ -18,7 +18,7 @@
             <tr>
                 <td><input type="checkbox" id=@x.orderId onchange="change(id)"></td>
                 <td>@x.orderId</td>
-                <td>@x.orderItem</td>
+                <td><input type="button" onclick="detailed(value)" value=@x.orderItem></td>
                 <td>@x.price</td>
                 <td>@x.cost</td>
                 @{
@@ -34,7 +34,12 @@
 
 
 <script>
-    var list=[];
+    var list = [];
+
+    function detailed(itemName) {
+        window.sessionStorage.setItem("data",itemName);
+        window.location.href = "Detailed";   
+    }
     function change(id) {
         var pos = list.indexOf(id);
         if (pos == -1)

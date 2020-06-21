@@ -58,11 +58,16 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="Tables" />
+    <Folder Include="Publish" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\OrderList.sql" />
+    <Build Include="Tables\ItemDetail.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="TestDb.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Publish\TestDb.publish.xml" />
   </ItemGroup>
 </Project>

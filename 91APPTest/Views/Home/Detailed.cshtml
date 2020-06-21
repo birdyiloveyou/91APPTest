@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Detailed";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<body onload="getData()">
+<div id="name"></div>
+<div id="detailedData"></div>
+
+    </body>
+<script>
+    function getData() {
+        var data = window.sessionStorage.getItem("data");
+        $.ajax({
+            type: 'POST',
+            url: "@Url.Action("getDetailedData","Home")",
+            contentType: "application/json",
+            data: JSON.stringify(data),
+            success: function (response) {
+                console.log(response)
+            }
+        });
+        //document.getElementById("name").innerHTML = data;
+        
+    }
+    
+</script>
+
+
+
